@@ -54,14 +54,70 @@
 		D129D1DF2A63FB1900527423 /* Homework14(Photos) */ = {
 			isa = PBXGroup;
 			children = (
-				D129D1E02A63FB1900527423 /* AppDelegate.swift */,
-				D129D1E22A63FB1900527423 /* SceneDelegate.swift */,
-				D129D1E42A63FB1900527423 /* ViewController.swift */,
-				D129D1E92A63FB1A00527423 /* Assets.xcassets */,
-				D129D1EB2A63FB1A00527423 /* LaunchScreen.storyboard */,
-				D129D1EE2A63FB1A00527423 /* Info.plist */,
+				D129D1F42A63FE0A00527423 /* App */,
+				D129D1F52A63FE2700527423 /* Resources */,
+				D129D1F72A63FE6400527423 /* Sources */,
 			);
 			path = "Homework14(Photos)";
+			sourceTree = "<group>";
+		};
+		D129D1F42A63FE0A00527423 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D129D1E02A63FB1900527423 /* AppDelegate.swift */,
+				D129D1E22A63FB1900527423 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D129D1F52A63FE2700527423 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D129D1F62A63FE4A00527423 /* Storyboards */,
+				D129D1E92A63FB1A00527423 /* Assets.xcassets */,
+				D129D1EE2A63FB1A00527423 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D129D1F62A63FE4A00527423 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				D129D1EB2A63FB1A00527423 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		D129D1F72A63FE6400527423 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D129D1FA2A63FEB000527423 /* ViewControllers */,
+				D129D1F92A63FEA600527423 /* Items */,
+				D129D1F82A63FE9D00527423 /* Model */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		D129D1F82A63FE9D00527423 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D129D1F92A63FEA600527423 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		D129D1FA2A63FEB000527423 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D129D1E42A63FB1900527423 /* ViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +333,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6XZKA4BJLF;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Homework14(Photos)/Info.plist";
+				INFOPLIST_FILE = "Homework14(Photos)/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -305,7 +361,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6XZKA4BJLF;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Homework14(Photos)/Info.plist";
+				INFOPLIST_FILE = "Homework14(Photos)/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
