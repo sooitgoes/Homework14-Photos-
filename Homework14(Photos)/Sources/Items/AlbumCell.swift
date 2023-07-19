@@ -17,7 +17,6 @@ class AlbumCell: UICollectionViewCell {
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
@@ -25,7 +24,6 @@ class AlbumCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .regular)
         label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -34,7 +32,6 @@ class AlbumCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 15, weight: .regular)
         label.textColor = .gray
         label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
