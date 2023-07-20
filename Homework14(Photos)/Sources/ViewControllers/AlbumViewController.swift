@@ -11,8 +11,7 @@ class AlbumViewController: UIViewController {
 
     // MARK: - UI Elements
     private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewLayout()
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         registerCellForCollection()
         collection.dataSource = self
         collection.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +49,34 @@ class AlbumViewController: UIViewController {
     }
 
     // MARK: - CollectionViewLayout
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { sectionIndex, _ in
 
+            switch sectionIndex {
+            case 0:
+                let itemSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .fractionalHeight(1))
+                let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+
+                let groupSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(0.47),
+                    heightDimension: .fractionalHeight(0.55))
+                let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: layoutItem, count: 2)
+
+                let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+                layoutSection.orthogonalScrollingBehavior = .groupPaging
+
+                return layoutSection
+            case 1:
+                
+
+
+            }
+        }
+    }
 }
 
 extension AlbumViewController: UICollectionViewDataSource {
