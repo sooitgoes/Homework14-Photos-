@@ -12,7 +12,9 @@ class AlbumViewController: UIViewController {
     // MARK: - UI Elements
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        registerCellForCollection()
+        collection.register(AlbumCell.self, forCellWithReuseIdentifier: AlbumCell.identifier)
+        collection.register(TableCell.self, forCellWithReuseIdentifier: TableCell.identifier)
+        collection.register(TableCellWithLock.self, forCellWithReuseIdentifier: TableCellWithLock.lockIdentifier)
         collection.dataSource = self
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
@@ -40,12 +42,6 @@ class AlbumViewController: UIViewController {
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-    }
-
-    private func registerCellForCollection() {
-        collectionView.register(AlbumCell.self, forCellWithReuseIdentifier: AlbumCell.identifier)
-        collectionView.register(TableCell.self, forCellWithReuseIdentifier: TableCell.identifier)
-        collectionView.register(TableCellWithLock.self, forCellWithReuseIdentifier: TableCellWithLock.lockIdentifier)
     }
 
     // MARK: - CollectionViewLayout
@@ -123,7 +119,7 @@ class AlbumViewController: UIViewController {
                 layoutSection.contentInsets = NSDirectionalEdgeInsets(
                     top: .zero,
                     leading: .zero,
-                    bottom: .zero,
+                    bottom: 20,
                     trailing: .zero)
 
                 return layoutSection
@@ -162,7 +158,7 @@ extension AlbumViewController: UICollectionViewDataSource {
             let item = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCell.identifier, for: indexPath) as? AlbumCell
             item?.prepareData(data: Model.secondSectionData[indexPath.item])
             return item ?? UICollectionViewCell()
-        case 3:
+        case 2:
             let item = collectionView.dequeueReusableCell(withReuseIdentifier: TableCell.identifier, for: indexPath) as? TableCell
             item?.prepareData(data: Model.thirdSecrionData[indexPath.item])
             return item ?? UICollectionViewCell()
