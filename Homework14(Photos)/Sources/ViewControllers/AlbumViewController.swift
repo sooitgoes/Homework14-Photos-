@@ -104,10 +104,29 @@ class AlbumViewController: UIViewController {
 
                 return layoutSection
             default:
+                let itemSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .fractionalHeight(1))
+                let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+                layoutItem.contentInsets = NSDirectionalEdgeInsets(
+                    top: .zero,
+                    leading: .zero,
+                    bottom: .zero,
+                    trailing: .zero)
 
+                let groupSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .estimated(50))
+                let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [layoutItem])
 
+                let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+                layoutSection.contentInsets = NSDirectionalEdgeInsets(
+                    top: .zero,
+                    leading: .zero,
+                    bottom: .zero,
+                    trailing: .zero)
 
-
+                return layoutSection
             }
         }
     }
