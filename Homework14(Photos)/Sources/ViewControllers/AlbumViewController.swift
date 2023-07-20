@@ -37,7 +37,7 @@ class AlbumViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor   )
         ])
     }
 
