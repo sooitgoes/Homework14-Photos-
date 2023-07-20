@@ -55,14 +55,46 @@ class AlbumViewController: UIViewController {
 
 extension AlbumViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        <#code#>
+        4
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        switch section {
+        case 0:
+            return Model.firstSectionData.count
+        case 1:
+            return Model.secondSectionData.count
+        case 2:
+            return Model.thirdSecrionData.count
+        case 3:
+            return Model.fourthSectionData.count
+        default:
+            return 0
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        switch indexPath.section {
+        case 0:
+            let item = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCell.identifier, for: indexPath) as? AlbumCell
+            item?.prepareData(data: Model.firstSectionData[indexPath.item])
+            return item ?? UICollectionViewCell()
+        case 1:
+            let item = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCell.identifier, for: indexPath) as? AlbumCell
+            item?.prepareData(data: Model.secondSectionData[indexPath.item])
+            return item ?? UICollectionViewCell()
+        case 3:
+            let item = collectionView.dequeueReusableCell(withReuseIdentifier: TableCell.identifier, for: indexPath) as? TableCell
+            item?.prepareData(data: Model.thirdSecrionData[indexPath.item])
+            return item ?? UICollectionViewCell()
+        default:
+            let item = collectionView.dequeueReusableCell(withReuseIdentifier: TableCellWithLock.lockIdentifier, for: indexPath) as? TableCellWithLock
+            item?.prepareData(data: Model.fourthSectionData[indexPath.item])
+
+            if item?.nameLabel.text == "Hidden" || item?.nameLabel.text == "Recently Deleted" {
+                item?.numberLabel.isHidden = true
+            }
+            return item ?? UICollectionViewCell()
+        }
     }
 }
