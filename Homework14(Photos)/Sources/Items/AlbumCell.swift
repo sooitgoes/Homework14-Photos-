@@ -14,7 +14,6 @@ class AlbumCell: UICollectionViewCell {
     private lazy var photo: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
         return imageView

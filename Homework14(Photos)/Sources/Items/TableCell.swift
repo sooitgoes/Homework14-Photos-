@@ -11,7 +11,7 @@ class TableCell: UICollectionViewCell {
     static let identifier = "Table cell"
 
     // MARK: - UI Elements
-    private lazy var icon: UIImageView = {
+    lazy var icon: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
@@ -20,7 +20,7 @@ class TableCell: UICollectionViewCell {
         return imageView
     }()
 
-    private lazy var nameLabel: UILabel = {
+    lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .regular)
         label.textColor = .systemBlue
@@ -28,7 +28,7 @@ class TableCell: UICollectionViewCell {
         return label
     }()
 
-    private lazy var numberLabel: UILabel = {
+    lazy var numberLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .regular)
         label.textColor = .gray
@@ -36,7 +36,7 @@ class TableCell: UICollectionViewCell {
         return label
     }()
 
-    private lazy var buttonChevron: UIButton = {
+    lazy var buttonChevron: UIButton = {
         let button = UIButton()
         let icon = UIImage(systemName: "chevron.right")
         button.tintColor = .systemGray4
@@ -46,7 +46,7 @@ class TableCell: UICollectionViewCell {
         return button
     }()
 
-    private lazy var separartor: UIView = {
+    lazy var separartor: UIView = {
         let line = UIView()
         line.backgroundColor = .systemGray4
         line.translatesAutoresizingMaskIntoConstraints = false
@@ -66,7 +66,7 @@ class TableCell: UICollectionViewCell {
     }
 
     // MARK: - Setup
-    private func setupHierarchy() {
+    func setupHierarchy() {
         contentView.addSubview(icon)
         contentView.addSubview(nameLabel)
         contentView.addSubview(numberLabel)
@@ -74,7 +74,7 @@ class TableCell: UICollectionViewCell {
         contentView.addSubview(separartor)
     }
 
-    private func setupLayout() {
+    func setupLayout() {
         NSLayoutConstraint.activate([
             icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             icon.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 4),
