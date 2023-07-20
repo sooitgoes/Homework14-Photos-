@@ -58,7 +58,11 @@ class AlbumViewController: UIViewController {
                     widthDimension: .fractionalWidth(1),
                     heightDimension: .fractionalHeight(1))
                 let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+                layoutItem.contentInsets = NSDirectionalEdgeInsets(
+                    top: 5,
+                    leading: 5,
+                    bottom: 5,
+                    trailing: 5)
 
                 let groupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.47),
@@ -66,12 +70,42 @@ class AlbumViewController: UIViewController {
                 let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: layoutItem, count: 2)
 
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+                layoutSection.contentInsets = NSDirectionalEdgeInsets(
+                    top: 5,
+                    leading: 5,
+                    bottom: 5,
+                    trailing: 5)
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
 
                 return layoutSection
             case 1:
-                
+                let itemSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .fractionalHeight(1))
+                let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+                layoutItem.contentInsets = NSDirectionalEdgeInsets(
+                    top: 5,
+                    leading: 5,
+                    bottom: 5,
+                    trailing: 5)
+
+                let groupSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(0.47),
+                    heightDimension: .fractionalHeight(0.55 / 2))
+                let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
+
+                let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+                layoutSection.contentInsets = NSDirectionalEdgeInsets(
+                    top: 5,
+                    leading: 5,
+                    bottom: 5,
+                    trailing: 5)
+                layoutSection.orthogonalScrollingBehavior = .groupPaging
+
+                return layoutSection
+            default:
+
+
 
 
             }
