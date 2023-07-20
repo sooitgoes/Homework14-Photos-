@@ -13,6 +13,8 @@ class AlbumViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        registerCellForCollection()
+        collection.dataSource = self
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
     }()
@@ -42,10 +44,25 @@ class AlbumViewController: UIViewController {
     }
 
     private func registerCellForCollection() {
-
+        collectionView.register(AlbumCell.self, forCellWithReuseIdentifier: AlbumCell.identifier)
+        collectionView.register(TableCell.self, forCellWithReuseIdentifier: TableCell.identifier)
+        collectionView.register(TableCellWithLock.self, forCellWithReuseIdentifier: TableCellWithLock.lockIdentifier)
     }
 
     // MARK: - CollectionViewLayout
 
 }
 
+extension AlbumViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        <#code#>
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+}
