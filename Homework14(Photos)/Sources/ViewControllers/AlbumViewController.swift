@@ -13,6 +13,7 @@ class AlbumViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collection.dataSource = self
+        collection.delegate = self
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
     }()
@@ -46,6 +47,7 @@ class AlbumViewController: UIViewController {
         collectionView.register(AlbumCell.self, forCellWithReuseIdentifier: AlbumCell.identifier)
         collectionView.register(TableCell.self, forCellWithReuseIdentifier: TableCell.identifier)
         collectionView.register(TableCellWithLock.self, forCellWithReuseIdentifier: TableCellWithLock.lockIdentifier)
+        collectionView.register(NameCellHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NameCellHeader.identifier)
     }
 
     // MARK: - CollectionViewLayout
@@ -77,6 +79,16 @@ class AlbumViewController: UIViewController {
                     trailing: 5)
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
 
+                // Header
+                let layoutSectionHeaderSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .fractionalWidth(0.15))
+                let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: layoutSectionHeaderSize,
+                    elementKind: UICollectionView.elementKindSectionHeader,
+                    alignment: .top)
+                layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
+
                 return layoutSection
             case 1:
                 let itemSize = NSCollectionLayoutSize(
@@ -102,6 +114,16 @@ class AlbumViewController: UIViewController {
                     trailing: 5)
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
 
+                // Header
+                let layoutSectionHeaderSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .fractionalWidth(0.15))
+                let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: layoutSectionHeaderSize,
+                    elementKind: UICollectionView.elementKindSectionHeader,
+                    alignment: .top)
+                layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
+
                 return layoutSection
             default:
                 let itemSize = NSCollectionLayoutSize(
@@ -126,13 +148,23 @@ class AlbumViewController: UIViewController {
                     bottom: 20,
                     trailing: .zero)
 
+                // Header
+                let layoutSectionHeaderSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .fractionalWidth(0.15))
+                let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: layoutSectionHeaderSize,
+                    elementKind: UICollectionView.elementKindSectionHeader,
+                    alignment: .top)
+                layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
+
                 return layoutSection
             }
         }
     }
 }
 
-extension AlbumViewController: UICollectionViewDataSource {
+extension AlbumViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         4
     }
@@ -174,6 +206,27 @@ extension AlbumViewController: UICollectionViewDataSource {
                 item?.numberLabel.isHidden = true
             }
             return item ?? UICollectionViewCell()
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch indexPath.section {
+        case 0:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameCellHeader.identifier, for: indexPath) as? NameCellHeader
+            header?.nameLabel.text = "My Albums"
+            return header ?? UICollectionReusableView()
+        case 1:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameCellHeader.identifier, for: indexPath) as? NameCellHeader
+            header?.nameLabel.text = "Shared Albums"
+            return header ?? UICollectionReusableView()
+        case 2:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameCellHeader.identifier, for: indexPath) as? NameCellHeader
+            header?.nameLabel.text = "Media Types"
+            return header ?? UICollectionReusableView()
+        default:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameCellHeader.identifier, for: indexPath) as? NameCellHeader
+            header?.nameLabel.text = "Utilities"
+            return header ?? UICollectionReusableView()
         }
     }
 }

@@ -11,13 +11,13 @@ class NameCellHeader: UICollectionReusableView {
     static let identifier = "Header"
 
     // MARK: - Outlets
-    private lazy var nameLabel: UILabel = {
+    lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     lazy var button: UIButton = {
         var button = UIButton()
         button.setTitle("All", for: .normal)
@@ -25,8 +25,8 @@ class NameCellHeader: UICollectionReusableView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
-    private lazy var separator: UIView = {
+    
+    lazy var separator: UIView = {
         let line = UIView()
         line.backgroundColor = .systemGray4
         line.translatesAutoresizingMaskIntoConstraints = false
