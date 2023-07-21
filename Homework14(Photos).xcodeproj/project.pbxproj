@@ -15,6 +15,10 @@
 		D129D1ED2A63FB1A00527423 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D129D1EB2A63FB1A00527423 /* LaunchScreen.storyboard */; };
 		D129D1FC2A64026800527423 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D129D1FB2A64026800527423 /* Model.swift */; };
 		D1DF7CA42A6A98CA0093EAEA /* NameCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DF7CA32A6A98CA0093EAEA /* NameCellHeader.swift */; };
+		D1DF7CA72A6AB5BF0093EAEA /* PhotoTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DF7CA62A6AB5BF0093EAEA /* PhotoTabBarController.swift */; };
+		D1DF7CAA2A6AB7DA0093EAEA /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DF7CA92A6AB7DA0093EAEA /* LibraryViewController.swift */; };
+		D1DF7CAC2A6AB7E90093EAEA /* ForYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DF7CAB2A6AB7E90093EAEA /* ForYouViewController.swift */; };
+		D1DF7CAE2A6AB7F80093EAEA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DF7CAD2A6AB7F80093EAEA /* SearchViewController.swift */; };
 		D1F1E2E62A680ADF00F671E1 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E2E52A680ADF00F671E1 /* AlbumCell.swift */; };
 		D1F1E2E82A68169E00F671E1 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E2E72A68169E00F671E1 /* TableCell.swift */; };
 /* End PBXBuildFile section */
@@ -30,6 +34,10 @@
 		D129D1EE2A63FB1A00527423 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D129D1FB2A64026800527423 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		D1DF7CA32A6A98CA0093EAEA /* NameCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCellHeader.swift; sourceTree = "<group>"; };
+		D1DF7CA62A6AB5BF0093EAEA /* PhotoTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTabBarController.swift; sourceTree = "<group>"; };
+		D1DF7CA92A6AB7DA0093EAEA /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		D1DF7CAB2A6AB7E90093EAEA /* ForYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForYouViewController.swift; sourceTree = "<group>"; };
+		D1DF7CAD2A6AB7F80093EAEA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D1F1E2E52A680ADF00F671E1 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		D1F1E2E72A68169E00F671E1 /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +109,7 @@
 		D129D1F72A63FE6400527423 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D1DF7CA82A6AB5C70093EAEA /* Tab Bar */,
 				D129D1FA2A63FEB000527423 /* ViewControllers */,
 				D129D1F92A63FEA600527423 /* Items */,
 				D1DF7CA52A6A98D30093EAEA /* Headers */,
@@ -130,7 +139,10 @@
 		D129D1FA2A63FEB000527423 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D1DF7CA92A6AB7DA0093EAEA /* LibraryViewController.swift */,
+				D1DF7CAB2A6AB7E90093EAEA /* ForYouViewController.swift */,
 				D129D1E42A63FB1900527423 /* AlbumViewController.swift */,
+				D1DF7CAD2A6AB7F80093EAEA /* SearchViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -141,6 +153,14 @@
 				D1DF7CA32A6A98CA0093EAEA /* NameCellHeader.swift */,
 			);
 			path = Headers;
+			sourceTree = "<group>";
+		};
+		D1DF7CA82A6AB5C70093EAEA /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				D1DF7CA62A6AB5BF0093EAEA /* PhotoTabBarController.swift */,
+			);
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,7 +237,11 @@
 				D1DF7CA42A6A98CA0093EAEA /* NameCellHeader.swift in Sources */,
 				D106C7B32A69381D00BA03CA /* TableCellWithLock.swift in Sources */,
 				D129D1E52A63FB1900527423 /* AlbumViewController.swift in Sources */,
+				D1DF7CA72A6AB5BF0093EAEA /* PhotoTabBarController.swift in Sources */,
 				D129D1FC2A64026800527423 /* Model.swift in Sources */,
+				D1DF7CAE2A6AB7F80093EAEA /* SearchViewController.swift in Sources */,
+				D1DF7CAC2A6AB7E90093EAEA /* ForYouViewController.swift in Sources */,
+				D1DF7CAA2A6AB7DA0093EAEA /* LibraryViewController.swift in Sources */,
 				D1F1E2E62A680ADF00F671E1 /* AlbumCell.swift in Sources */,
 				D129D1E12A63FB1900527423 /* AppDelegate.swift in Sources */,
 				D129D1E32A63FB1900527423 /* SceneDelegate.swift in Sources */,
