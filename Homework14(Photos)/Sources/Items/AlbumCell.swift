@@ -16,6 +16,7 @@ class AlbumCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
         imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
@@ -23,6 +24,7 @@ class AlbumCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .regular)
         label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -31,17 +33,9 @@ class AlbumCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 15, weight: .regular)
         label.textColor = .gray
         label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
-    private lazy var stack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 5
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-
 
     // MARK: - Initializers
     override init(frame: CGRect) {
@@ -57,20 +51,21 @@ class AlbumCell: UICollectionViewCell {
 
     // MARK: - Setup
     private func setupHierarchy() {
-        stack.addArrangedSubview(photo)
-        stack.addArrangedSubview(namePhoto)
-        stack.addArrangedSubview(numberPhoto)
-        contentView.addSubview(stack)
+        contentView.addSubview(photo)
+        contentView.addSubview(namePhoto)
+        contentView.addSubview(numberPhoto)
     }
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
+            photo.topAnchor.constraint(equalTo: contentView.topAnchor),
+            photo.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            photo.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             photo.heightAnchor.constraint(equalTo: photo.widthAnchor),
 
-            stack.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stack.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            stack.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            namePhoto.topAnchor.constraint(equalTo: photo.bottomAnchor, constant: 5),
+
+            numberPhoto.topAnchor.constraint(equalTo: namePhoto.bottomAnchor, constant: 5)
         ])
     }
 
