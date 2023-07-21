@@ -13,7 +13,7 @@ class NameCellHeader: UICollectionReusableView {
     // MARK: - Outlets
     lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .systemFont(ofSize: 22, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

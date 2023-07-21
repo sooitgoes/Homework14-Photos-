@@ -159,7 +159,7 @@ class AlbumViewController: UIViewController {
     }
 }
 
-extension AlbumViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension AlbumViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         4
     }
@@ -240,3 +240,20 @@ extension AlbumViewController: UICollectionViewDataSource, UICollectionViewDeleg
         }
     }
 }
+
+extension AlbumViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        switch indexPath.section {
+        case 0:
+            print(Model.firstSectionData[indexPath.item].name)
+        case 1:
+            print(Model.secondSectionData[indexPath.item].name)
+        case 2:
+            print(Model.thirdSecrionData[indexPath.item].name)
+        default:
+            print(Model.fourthSectionData[indexPath.item].name)
+        }
+    }
+}
+
