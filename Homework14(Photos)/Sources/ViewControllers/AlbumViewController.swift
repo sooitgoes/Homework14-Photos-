@@ -62,7 +62,7 @@ class AlbumViewController: UIViewController {
 
                 let groupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.47),
-                    heightDimension: .fractionalHeight(0.55))
+                    heightDimension: .estimated(470))
                 let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: layoutItem, count: 2)
 
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
@@ -87,7 +87,7 @@ class AlbumViewController: UIViewController {
 
                 let groupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.47),
-                    heightDimension: .fractionalHeight(0.55 / 2))
+                    heightDimension: .estimated(470 / 2))
                 let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
 
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
