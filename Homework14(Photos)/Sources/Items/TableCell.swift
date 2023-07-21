@@ -41,7 +41,7 @@ class TableCell: UICollectionViewCell {
         let icon = UIImage(systemName: "chevron.right")
         button.tintColor = .systemGray4
         button.setImage(icon, for: .normal)
-        button.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 15, weight: .thin), forImageIn: .normal)
+        button.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 15, weight: .medium), forImageIn: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -77,17 +77,15 @@ class TableCell: UICollectionViewCell {
     func setupLayout() {
         NSLayoutConstraint.activate([
             icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            icon.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 4),
-            icon.heightAnchor.constraint(equalToConstant: 30),
-            icon.widthAnchor.constraint(equalToConstant: 30),
+            icon.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            icon.heightAnchor.constraint(equalToConstant: 27),
+            icon.widthAnchor.constraint(equalToConstant: 27),
 
             nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             nameLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 20),
 
             buttonChevron.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            buttonChevron.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
-            buttonChevron.heightAnchor.constraint(equalToConstant: 25),
-            buttonChevron.widthAnchor.constraint(equalToConstant: 25),
+            buttonChevron.rightAnchor.constraint(equalTo: contentView.rightAnchor),
 
             numberLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             numberLabel.rightAnchor.constraint(equalTo: buttonChevron.leftAnchor, constant: -5),

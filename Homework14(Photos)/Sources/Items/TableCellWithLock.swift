@@ -14,6 +14,7 @@ class TableCellWithLock: TableCell {
     private lazy var lockIcon: UIImageView = {
         let icon = UIImageView()
         icon.clipsToBounds = true
+        icon.tintColor = .gray
         icon.contentMode = .scaleAspectFit
         icon.translatesAutoresizingMaskIntoConstraints = false
         return icon
@@ -30,8 +31,8 @@ class TableCellWithLock: TableCell {
         NSLayoutConstraint.activate([
             lockIcon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             lockIcon.rightAnchor.constraint(equalTo: buttonChevron.leftAnchor, constant: -5),
-            lockIcon.widthAnchor.constraint(equalToConstant: 20),
-            lockIcon.heightAnchor.constraint(equalToConstant: 20)
+            lockIcon.widthAnchor.constraint(equalToConstant: 17),
+            lockIcon.heightAnchor.constraint(equalToConstant: 17)
         ])
     }
 

@@ -14,7 +14,7 @@ class AlbumCell: UICollectionViewCell {
     private lazy var photo: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 10
+        imageView.layer.cornerRadius = 5
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -65,7 +65,7 @@ class AlbumCell: UICollectionViewCell {
 
             namePhoto.topAnchor.constraint(equalTo: photo.bottomAnchor, constant: 5),
 
-            numberPhoto.topAnchor.constraint(equalTo: namePhoto.bottomAnchor, constant: 5)
+            numberPhoto.topAnchor.constraint(equalTo: namePhoto.bottomAnchor, constant: 0)
         ])
     }
 

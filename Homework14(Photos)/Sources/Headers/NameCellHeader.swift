@@ -20,7 +20,7 @@ class NameCellHeader: UICollectionReusableView {
     
     lazy var button: UIButton = {
         var button = UIButton()
-        button.setTitle("All", for: .normal)
+        button.setTitle("See All", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -55,15 +55,15 @@ class NameCellHeader: UICollectionReusableView {
     private func setupLayout() {
         NSLayoutConstraint.activate([
             separator.topAnchor.constraint(equalTo: topAnchor),
-            separator.leftAnchor.constraint(equalTo: leftAnchor),
+            separator.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
             separator.rightAnchor.constraint(equalTo: rightAnchor),
             separator.heightAnchor.constraint(equalToConstant: 1),
 
             nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            nameLabel.leftAnchor.constraint(equalTo: leftAnchor),
+            nameLabel.leftAnchor.constraint(equalTo: separator.leftAnchor),
 
             button.bottomAnchor.constraint(equalTo: bottomAnchor),
-            button.rightAnchor.constraint(equalTo: rightAnchor)
+            button.rightAnchor.constraint(equalTo: rightAnchor, constant: -10)
         ])
     }
 
