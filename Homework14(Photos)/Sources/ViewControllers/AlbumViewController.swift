@@ -12,9 +12,6 @@ class AlbumViewController: UIViewController {
     // MARK: - UI Elements
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collection.register(AlbumCell.self, forCellWithReuseIdentifier: AlbumCell.identifier)
-        collection.register(TableCell.self, forCellWithReuseIdentifier: TableCell.identifier)
-        collection.register(TableCellWithLock.self, forCellWithReuseIdentifier: TableCellWithLock.lockIdentifier)
         collection.dataSource = self
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
@@ -26,6 +23,7 @@ class AlbumViewController: UIViewController {
         title = "Albums"
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
+        registerCellForCollection()
         setupHierarchy()
         setupLayout()
     }
@@ -42,6 +40,12 @@ class AlbumViewController: UIViewController {
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+
+    private func registerCellForCollection() {
+        collectionView.register(AlbumCell.self, forCellWithReuseIdentifier: AlbumCell.identifier)
+        collectionView.register(TableCell.self, forCellWithReuseIdentifier: TableCell.identifier)
+        collectionView.register(TableCellWithLock.self, forCellWithReuseIdentifier: TableCellWithLock.lockIdentifier)
     }
 
     // MARK: - CollectionViewLayout
