@@ -11,14 +11,14 @@ class NameCellHeader: UICollectionReusableView {
     static let identifier = "Header"
 
     // MARK: - Outlets
-    lazy var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 22, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    lazy var button: UIButton = {
+    private lazy var button: UIButton = {
         var button = UIButton()
         button.setTitle("See All", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
@@ -26,7 +26,7 @@ class NameCellHeader: UICollectionReusableView {
         return button
     }()
     
-    lazy var separator: UIView = {
+    private lazy var separator: UIView = {
         let line = UIView()
         line.backgroundColor = .systemGray4
         line.translatesAutoresizingMaskIntoConstraints = false
@@ -65,6 +65,11 @@ class NameCellHeader: UICollectionReusableView {
             button.bottomAnchor.constraint(equalTo: bottomAnchor),
             button.rightAnchor.constraint(equalTo: rightAnchor, constant: -10)
         ])
+    }
+
+    func prepareData(name: String, buttonIsHidden: Bool) {
+        nameLabel.text = name
+        button.isHidden = buttonIsHidden
     }
 
     override func prepareForReuse() {

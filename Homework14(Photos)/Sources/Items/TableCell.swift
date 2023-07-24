@@ -11,7 +11,7 @@ class TableCell: UICollectionViewCell {
     static let identifier = "Table cell"
 
     // MARK: - UI Elements
-    lazy var icon: UIImageView = {
+    private lazy var icon: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
@@ -20,7 +20,7 @@ class TableCell: UICollectionViewCell {
         return imageView
     }()
 
-    lazy var nameLabel: UILabel = {
+    private  lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .regular)
         label.textColor = .systemBlue
@@ -28,7 +28,7 @@ class TableCell: UICollectionViewCell {
         return label
     }()
 
-    lazy var numberLabel: UILabel = {
+    private lazy var numberLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .regular)
         label.textColor = .gray
@@ -46,7 +46,7 @@ class TableCell: UICollectionViewCell {
         return button
     }()
 
-    lazy var separartor: UIView = {
+    private lazy var separartor: UIView = {
         let line = UIView()
         line.backgroundColor = .systemGray4
         line.translatesAutoresizingMaskIntoConstraints = false
@@ -102,6 +102,10 @@ class TableCell: UICollectionViewCell {
         self.icon.image = UIImage(systemName: data.image)
         self.nameLabel.text = data.name
         self.numberLabel.text = data.description
+
+        if nameLabel.text != "Imports" {
+            numberLabel.isHidden = true
+        }
     }
 
     override func prepareForReuse() {

@@ -53,9 +53,10 @@ class AlbumViewController: UIViewController {
     // MARK: - CollectionViewLayout
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { sectionIndex, _ in
+            let sectionType = Sections(rawValue: sectionIndex)
 
-            switch sectionIndex {
-            case 0:
+            switch sectionType {
+            case .albumVertical:
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
                     heightDimension: .fractionalHeight(1))
@@ -90,7 +91,7 @@ class AlbumViewController: UIViewController {
                 layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
 
                 return layoutSection
-            case 1:
+            case .albumHorizontal:
                 let itemSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
                     heightDimension: .fractionalHeight(1))
@@ -160,19 +161,29 @@ class AlbumViewController: UIViewController {
 }
 
 extension AlbumViewController: UICollectionViewDataSource {
+    private enum Sections: Int, CaseIterable {
+        case albumVertical = 0
+        case albumHorizontal = 1
+        case table = 2
+        case tableWithLock = 3
+    }
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        4
+        let sections = Sections.allCases.count
+        return sections
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
+        let sectionType = Sections(rawValue: section)
+
+        switch sectionType {
+        case .albumVertical:
             return Model.firstSectionData.count
-        case 1:
+        case .albumHorizontal:
             return Model.secondSectionData.count
-        case 2:
+        case .table:
             return Model.thirdSecrionData.count
-        case 3:
+        case .tableWithLock:
             return Model.fourthSectionData.count
         default:
             return 0
@@ -180,76 +191,88 @@ extension AlbumViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.section {
-        case 0:
-            let item = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCell.identifier, for: indexPath) as? AlbumCell
-            item?.prepareData(data: Model.firstSectionData[indexPath.item])
-            return item ?? UICollectionViewCell()
-        case 1:
-            let item = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCell.identifier, for: indexPath) as? AlbumCell
-            item?.prepareData(data: Model.secondSectionData[indexPath.item])
-            return item ?? UICollectionViewCell()
-        case 2:
-            let item = collectionView.dequeueReusableCell(withReuseIdentifier: TableCell.identifier, for: indexPath) as? TableCell
-            item?.prepareData(data: Model.thirdSecrionData[indexPath.item])
+        let sectionType = Sections(rawValue: indexPath.section)
 
-            if item?.nameLabel.text == "Screenshots" {
-                item?.separartor.isHidden = true
+        switch sectionType {
+        case .albumVertical:
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCell.identifier, for: indexPath) as? AlbumCell else {
+                return UICollectionViewCell()
             }
-            return item ?? UICollectionViewCell()
+            item.prepareData(data: Model.firstSectionData[indexPath.item])
+
+            return item
+        case .albumHorizontal:
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCell.identifier, for: indexPath) as? AlbumCell else {
+                return UICollectionViewCell()
+            }
+            item.prepareData(data: Model.secondSectionData[indexPath.item])
+
+            return item
+        case .table:
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: TableCell.identifier, for: indexPath) as? TableCell else {
+                return UICollectionViewCell()
+            }
+            item.prepareData(data: Model.thirdSecrionData[indexPath.item])
+
+            return item
         default:
-            let item = collectionView.dequeueReusableCell(withReuseIdentifier: TableCellWithLock.lockIdentifier, for: indexPath) as? TableCellWithLock
-            item?.prepareData(data: Model.fourthSectionData[indexPath.item])
-
-            if item?.nameLabel.text == "Imports" {
-                item?.numberLabel.isHidden = true
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: TableCellWithLock.lockIdentifier, for: indexPath) as? TableCellWithLock else {
+                return UICollectionViewCell()
             }
-
-            if item?.nameLabel.text == "Recently Deleted" {
-                item?.separartor.isHidden = true
-            }
-            return item ?? UICollectionViewCell()
+            item.prepareData(data: Model.fourthSectionData[indexPath.item])
+            
+            return item
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch indexPath.section {
-        case 0:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameCellHeader.identifier, for: indexPath) as? NameCellHeader
-            header?.nameLabel.text = "My Albums"
+        let sectionType = Sections(rawValue: indexPath.section)
 
-            return header ?? UICollectionReusableView()
-        case 1:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameCellHeader.identifier, for: indexPath) as? NameCellHeader
-            header?.nameLabel.text = "Shared Albums"
-            header?.button.isHidden = true
+        switch sectionType {
+        case .albumVertical:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameCellHeader.identifier, for: indexPath) as? NameCellHeader else {
+                return UICollectionReusableView()
+            }
+            header.prepareData(name: "My Albums", buttonIsHidden: false)
 
-            return header ?? UICollectionReusableView()
-        case 2:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameCellHeader.identifier, for: indexPath) as? NameCellHeader
-            header?.nameLabel.text = "Media Types"
-            header?.button.isHidden = true
+            return header
+        case .albumHorizontal:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameCellHeader.identifier, for: indexPath) as? NameCellHeader else {
+                return UICollectionReusableView()
+            }
+            header.prepareData(name: "Shared Albums", buttonIsHidden: true)
 
-            return header ?? UICollectionReusableView()
+            return header
+        case .table:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameCellHeader.identifier, for: indexPath) as? NameCellHeader else {
+                return UICollectionReusableView()
+            }
+
+            header.prepareData(name: "Media Types", buttonIsHidden: true)
+
+            return header
         default:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameCellHeader.identifier, for: indexPath) as? NameCellHeader
-            header?.nameLabel.text = "Utilities"
-            header?.button.isHidden = true
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NameCellHeader.identifier, for: indexPath) as? NameCellHeader else {
+                return UICollectionReusableView()
+            }
+            header.prepareData(name: "Utilities", buttonIsHidden: true)
 
-            return header ?? UICollectionReusableView()
+            return header
         }
     }
 }
 
 extension AlbumViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sectionType = Sections(rawValue: indexPath.section)
+
         collectionView.deselectItem(at: indexPath, animated: true)
-        switch indexPath.section {
-        case 0:
+        switch sectionType {
+        case .albumVertical:
             print(Model.firstSectionData[indexPath.item].name)
-        case 1:
+        case .albumHorizontal:
             print(Model.secondSectionData[indexPath.item].name)
-        case 2:
+        case .table:
             print(Model.thirdSecrionData[indexPath.item].name)
         default:
             print(Model.fourthSectionData[indexPath.item].name)
